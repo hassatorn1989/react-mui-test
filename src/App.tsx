@@ -10,6 +10,9 @@ import {
 } from "react-router-dom";
 import Layout from './layouts/Layout';
 import { ThemeProvider, createTheme } from '@mui/material';
+import { store } from './app/store'
+import { Provider } from 'react-redux'
+
 
 const router = createBrowserRouter([
   {
@@ -101,10 +104,12 @@ const theme = createTheme(
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
-      {/* {fallbackElement={< p > Loading...</p >} } */}
-      < RouterProvider router={router}  />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        {/* {fallbackElement={< p > Loading...</p >} } */}
+        < RouterProvider router={router} />
+      </ThemeProvider>
+    </Provider>
   );
 }
 
